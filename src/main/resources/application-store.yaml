@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: springboot-carservice
+
+reference-data:
+  engine-types: gasoline, diesel, hybrid
+  fuel-types:
+    - type: gasoline
+      varieties: A-95, A-98, A-100
+    - type: diesel
+      varieties: winter, summer, arctic
+    - type: electric
+      varieties: []
