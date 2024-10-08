@@ -39,7 +39,8 @@ public class CarsController {
     }
 
     @PostMapping("")
-    public ResponseEntity<List<Car>> postCar(@RequestParam String model, @RequestParam int enginePower) {
+    public ResponseEntity<List<Car>> postCar(@RequestParam String model,
+                                             @RequestParam int enginePower) {
         this.carsDAO.save(new Car(model, enginePower));
         return new ResponseEntity<>(this.carsDAO.findAll(), HttpStatus.CREATED);
     }

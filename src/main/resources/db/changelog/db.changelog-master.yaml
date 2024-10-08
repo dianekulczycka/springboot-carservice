@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.1
+      author: dina
+      changes:
+        - createTable:
+            tableName: cars
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: model
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: engine_power
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 1.0.2
+      author: dina
+      changes:
+        - addColumn:
+            tableName: cars
+            columns:
+              - column:
+                  name: torque
+                  type: varchar(255)
