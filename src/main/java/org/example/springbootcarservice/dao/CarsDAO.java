@@ -3,7 +3,7 @@ package org.example.springbootcarservice.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import org.example.springbootcarservice.models.Car;
+import org.example.springbootcarservice.models.CarRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Comparator;
@@ -15,38 +15,38 @@ public class CarsDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Car> findAll() {
-        return em.createQuery("select c from Car c", Car.class).getResultList();
+    public List<CarRepository> findAll() {
+        return em.createQuery("select c from CarRepository c", CarRepository.class).getResultList();
     }
 
-    public Car findById(int id) {
-        return em.find(Car.class, id);
+    public CarRepository findById(int id) {
+        return em.find(CarRepository.class, id);
     }
 
-    public Car findMinPower() {
-        return em.createQuery("select c from Car c where c.enginePower = (select MIN(c2.enginePower) from Car c2)", Car.class)
+    public CarRepository findMinPower() {
+        return em.createQuery("select c from CarRepository c where c.enginePower = (select MIN(c2.enginePower) from CarRepository c2)", CarRepository.class)
                 .getSingleResult();
     }
 
-    public Car findMaxPower() {
-        List<Car> cars = em.createQuery("select c from Car c", Car.class).getResultList();
+    public CarRepository findMaxPower() {
+        List<CarRepository> cars = em.createQuery("select c from CarRepository c", CarRepository.class).getResultList();
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getEnginePower))
+                .max(Comparator.comparingInt(CarRepository::getEnginePower))
                 .orElse(null);
     }
 
     @Transactional
-    public void save(Car customer) {
+    public void save(CarRepository customer) {
         em.persist(customer);
     }
 
     @Transactional
-    public void update(Car customer) {
+    public void update(CarRepository customer) {
         em.merge(customer);
     }
 
     @Transactional
     public void delete(int id) {
-        em.remove(em.find(Car.class, id));
+        em.remove(em.find(CarRepository.class, id));
     }
 }
