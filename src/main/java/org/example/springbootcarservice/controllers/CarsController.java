@@ -1,5 +1,6 @@
 package org.example.springbootcarservice.controllers;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.springbootcarservice.dao.CarsDAO;
 import org.example.springbootcarservice.models.CarRepository;
@@ -39,8 +40,8 @@ public class CarsController {
     }
 
     @PostMapping("")
-    public ResponseEntity<List<CarRepository>> postCar(@RequestParam String model,
-                                                       @RequestParam int enginePower) {
+    public ResponseEntity<List<CarRepository>> postCar(@RequestParam @Valid String model,
+                                                       @RequestParam @Valid int enginePower) {
         this.carsDAO.save(new CarRepository(model, enginePower));
         return new ResponseEntity<>(this.carsDAO.findAll(), HttpStatus.CREATED);
     }
