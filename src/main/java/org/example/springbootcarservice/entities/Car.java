@@ -25,7 +25,7 @@ public class Car {
 
     @Column(nullable = false, name = "engine_power") // DB validation
     @Positive(message = "engine power must be bigger than 0")
-    private int enginePower;
+    private Integer enginePower;
 
     public Car(String model, int enginePower) {
         this.model = model;
