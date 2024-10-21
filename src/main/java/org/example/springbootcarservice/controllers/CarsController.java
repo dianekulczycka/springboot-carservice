@@ -3,7 +3,6 @@ package org.example.springbootcarservice.controllers;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.springbootcarservice.dto.CarDTO;
-import org.example.springbootcarservice.entities.Car;
 import org.example.springbootcarservice.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,9 +42,8 @@ public class CarsController {
     }
 
     @PostMapping("")
-    public ResponseEntity<List<CarDTO>> postCar(@RequestParam @Valid String model,
-                                                @RequestParam @Valid int enginePower) {
-        this.carService.postCar(model, enginePower);
+    public ResponseEntity<List<CarDTO>> postCar(@RequestBody @Valid CarDTO carDTO) {
+        this.carService.postCar(carDTO);
         return new ResponseEntity<>(this.carService.getCars(), HttpStatus.CREATED);
     }
 
@@ -56,8 +54,8 @@ public class CarsController {
     }
 
     @PutMapping("")
-    public ResponseEntity<List<CarDTO>> putCar(@RequestBody Car car) {
-        this.carService.updateCar(car);
+    public ResponseEntity<List<CarDTO>> putCar(@RequestBody CarDTO carDTO) {
+        this.carService.updateCar(carDTO);
         return new ResponseEntity<>(this.carService.getCars(), HttpStatus.OK);
     }
 }

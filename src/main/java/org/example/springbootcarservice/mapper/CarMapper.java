@@ -10,6 +10,7 @@ public class CarMapper {
         CarDTO dto = new CarDTO();
         dto.setId(car.getId());
         dto.setModel(car.getModel());
+        dto.setEnginePower(car.getEnginePower());
         return dto;
     }
 
@@ -17,6 +18,7 @@ public class CarMapper {
         Car car = new Car();
         car.setId(dto.getId());
         car.setModel(dto.getModel());
+        car.setEnginePower(dto.getEnginePower());
         return car;
     }
 }
