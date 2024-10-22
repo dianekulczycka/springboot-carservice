@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController // Data Access Object DAO
+@RestController // Data Access Object
 // API (REST http) = a way to interact with our application
 
 @RequestMapping("/cars")
