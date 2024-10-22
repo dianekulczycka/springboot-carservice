@@ -3,8 +3,10 @@ databaseChangeLog:
       id: 1.0.1
       author: dina
       changes:
+        - createSequence:
+            sequenceName: "cars_seq"
         - createTable:
-            tableName: cars
+            tableName: "cars"
             columns:
               - column:
                   name: id
@@ -34,3 +36,37 @@ databaseChangeLog:
               - column:
                   name: torque
                   type: varchar(255)
+  - changeSet:
+      id: 1.0.3
+      author: dina
+      changes:
+        - createSequence:
+              sequenceName: "customers_seq"
+        - createTable:
+            tableName: "customers"
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  defaultValueSequenceNext: "customers_seq"
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+              - column:
+                  name: registration_date
+                  type: timestamp

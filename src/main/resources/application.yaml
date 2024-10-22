@@ -27,3 +27,15 @@ spring:
 #          auth: true
 #          starttls:
 #            enable: true
+logging:
+  level:
+    sun:
+      rmi:
+        transport:
+          tcp: OFF
+jwt:
+  secret: RICHARD_MY_BELOVED_CAT
+  access-token:
+    ttl-millis: 100*60*60
+  refresh-token:
+    ttl-millis: 100*60*60*24

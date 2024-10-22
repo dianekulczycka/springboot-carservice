@@ -1,5 +1,6 @@
 package org.example.springbootcarservice.controllers;
 
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.example.springbootcarservice.dto.MaintenanceDTO;
@@ -28,18 +29,21 @@ public class MaintenanceController {
         return new ResponseEntity<>(this.maintenanceService.getMaintenanceById(id), HttpStatus.OK);
     }
 
+    @RolesAllowed("SELLER")
     @PostMapping("")
     public ResponseEntity<List<MaintenanceDTO>> addMaintenance(@RequestBody MaintenanceDTO maintenanceDTO) {
         this.maintenanceService.postMaintenance(maintenanceDTO);
         return new ResponseEntity<>(this.maintenanceService.getMaintenances(), HttpStatus.CREATED);
     }
 
+    @RolesAllowed("SELLER")
     @PutMapping("")
     public ResponseEntity<List<MaintenanceDTO>> updateMaintenance(@RequestBody MaintenanceDTO maintenanceDTO) {
         this.maintenanceService.updateMaintenance(maintenanceDTO);
         return new ResponseEntity<>(this.maintenanceService.getMaintenances(), HttpStatus.OK);
     }
 
+    @RolesAllowed("SELLER")
     @DeleteMapping("/{id}")
     public ResponseEntity<List<MaintenanceDTO>> deleteMaintenance(@PathVariable String id) {
         ObjectId objectId = new ObjectId(id);
